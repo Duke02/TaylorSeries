@@ -35,15 +35,24 @@ def plot():
     j = 1
     overMaxErr = True
 
-    pointWanted = float(input("What value of x do you want from the function? "))
+    pointWanted = float(input("What value of x do you want from the function? (" + str(xLimits[0]) + ", " + str(xLimits[1]) + ") "))
     fOfXAtX = f.subs(x, pointWanted)
     valOfx = 0
+
+    max = -10000000000000000
+    min = -max
+    yOfYadaYada = 0
 
     while overMaxErr:
         funct = taylor(f, a, j)
         print("Taylor expansion at n = " + str(j), funct)
         for k in x1:
-            y1.append(funct.subs(x, k))
+            yOfYadaYada = funct.subs(x, k)
+            if yOfYadaYada > max:
+                max = yOfYadaYada
+            elif yOfYadaYada < min:
+                min = yOfYadaYada
+            y1.append(yOfYadaYada)
         if abs(f.subs(x, pointWanted) - funct.subs(x, pointWanted)) < maxErr:
             overMaxErr = False
         else:
@@ -53,14 +62,16 @@ def plot():
             pyplot.plot(pointWanted, funct.subs(x, pointWanted), marker="o", markersize=5, label=("O" + str(j)))
         y1 = []
         j += 1
+
     if f is eToX:
         pyplot.plot(x1, num.exp(x1), label="e to the x")
         pyplot.plot(pointWanted, num.exp(pointWanted), marker="o", markersize=2, label="F")
     elif f is sinFunct:
         pyplot.plot(x1, num.sin(x1), label="sin of x")
         pyplot.plot(pointWanted, num.sin([pointWanted]), marker="o", markersize=2, label="F")
+
     pyplot.xlim(xLimits)
-    pyplot.ylim([-5, 5])
+    pyplot.ylim([float(min), float(max)])
     pyplot.xlabel("x")
     pyplot.ylabel("y")
     pyplot.legend()
