@@ -39,7 +39,7 @@ def plot():
     fOfXAtX = f.subs(x, pointWanted)
     valOfx = 0
 
-    max = -10000000000000000
+    max = -99999999999999999999
     min = -max
     yOfYadaYada = 0
 
