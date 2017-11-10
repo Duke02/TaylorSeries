@@ -7,10 +7,20 @@ pyplot.style.use("ggplot")
 x = sym.Symbol('x')
 
 def choose():
-    choices = [sym.functions.exp(x), sym.functions.sin(x), sym.functions.cos(x), sym.functions.log(x)]
-    print("Choices are ")
+    choices = [sym.functions.exp(x),
+               sym.functions.sin(x),
+               sym.functions.cos(x),
+               sym.functions.log(x),
+               sym.functions.cosh(x),
+               sym.functions.sinh(x),
+               sym.functions.tan(x),
+               sym.functions.cot(x),
+               sym.functions.csc(x),
+               sym.functions.sec(x)]
+
+    print("Choices are")
     for i in range(0, len(choices)):
-        print(str(i) + " " + str(choices[i]))
+        print("\t" + str(i) + ": " + str(choices[i]))
     inp = raw_input("What do you want your function to be (The number)? ")
     return choices[int(inp)]
 
@@ -31,7 +41,11 @@ def taylor(function, a, n):
 
 def plot():
     f = choose()
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 58421f8b953acb361ef1593ac5406fcc02b6307d
     xLimits = [-5, 5]
     x1 = num.linspace(xLimits[0], xLimits[1], 800)
     y1 = []
@@ -45,7 +59,7 @@ def plot():
     fOfXAtX = f.subs(x, pointWanted)
     valOfx = 0
 
-    max = -99999999999999999999
+    max = -9999999999999999
     min = -max
     yOfYadaYada = 0
 
